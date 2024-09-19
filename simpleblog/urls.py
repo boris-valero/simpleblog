@@ -21,7 +21,7 @@ from articles.views import list_articles
 
 urlpatterns = [
     re_path(r'^articles/', include('articles.urls', namespace='articles')),
-    path('', list_articles, name='articles:list'),
+    path('', list_articles, name='articles_list'),
     re_path(r'^users/', include('users.urls', namespace='users')),
     path('admin-blog/', admin.site.urls),
 ]
