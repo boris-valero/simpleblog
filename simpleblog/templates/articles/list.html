@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                {% for article in articles %}
+                    <div class="post-preview">
+                        <a href="{% url 'article_detail' article.slug article.id %}">
+                            <h2 class="post-title">
+                                {{ article.title }}
+                            </h2>
+                            <h3 class="post-subtitle">
+                                {{ article.subtitle }}
+                            </h3>
+                        </a>
+                        <p class="post-meta">
+                            Posté par
+                            <b>{{ article.author.displayed_name }}</b>
+                            le {{ article.created }}
+                        </p>
+                    </div>
+                    <hr>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="clearfix">
+            <span class="step-links">
+                {% if articles.has_previous %}
+                    <a class="btn btn-primary" href="?page={{ articles.previous_page_number }}">Précédent</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ articles.number }} sur {{ articles.paginator.num_pages }}.
+                </span>
+
+                {% if articles.has_next %}
+                    <a class="btn btn-primary" href="?page={{ articles.next_page_number }}">Suivant</a>
+                {% endif %}        
+            </span>
+        </div>
+    </div>
+{% endblock content %}
