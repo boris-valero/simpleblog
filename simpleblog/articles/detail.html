@@ -1,0 +1,27 @@
+{ % extends "base.html" % }
+
+{% block h1 %}
+    {{ article.title }}
+{% endblock h1 %}
+
+{% block subheading %}
+    {{ article.subtitle }}
+{% endblock subheading %}
+
+{% block content %}
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                {{ article.content | safe }}
+            </div>
+        </div>
+    </div>
+
+    <p class="post-meta">
+        Posté par
+        <b>{{ article.author.displayed_name }}</b>
+        le {{ article.created }}
+    </p>
+</article>
+{% endblock content %}
